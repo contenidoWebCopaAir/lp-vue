@@ -71,7 +71,7 @@ var sysCities = {
             {"name":"Santa Cruz, BO", "id":"VVI"},
             {"name":"Santa Clara, CU", "id":"SNU"},
             {"name":"Santo Domingo, DO", "id":"SDQ"},
-			{"name":"San Francisco, US", "id":"SFO"},
+		{"name":"San Francisco, US", "id":"SFO"},
             {"name":"Sao Paulo, BR", "id":"GRU"},
             {"name":"St Maarten, AN", "id":"SXM"},
             {"name":"Tampa, US", "id":"TPA"},
@@ -80,9 +80,51 @@ var sysCities = {
             {"name":"Valencia, VE", "id":"VLN"},
 			{"name":"Villahermosa, MX", "id":"VSA"},
             {"name":"Washington Dulles, US", "id":"IAD"}
-   
-            
-			]
+		],
+
+            tarifas: [
+                  { 
+                        origen: 'Guayaquil', 
+                        destinos: [
+                              { destino:'Caracas', antes:558, ahora:489 },
+                              { destino:'Cancún', antes:1063, ahora:538 },
+                              { destino:'La Habana', antes:868, ahora:476 },
+                              { destino:'Los Ángeles', antes:942, ahora:573 },
+                              { destino:'Maracaibo', antes:792, ahora:510 },
+                              { destino:'México D.F.', antes:757, ahora:566 },
+                              { destino:'Miami', antes:765, ahora:508 },
+                              { destino:'Orlando', antes:837, ahora:514 },
+                              { destino:'Panamá', antes:585, ahora:474 },
+                              { destino:'Punta Cana', antes:1030, ahora:585 },
+                              { destino:'Santo Domingo', antes:1022, ahora:582 },
+                              { destino:'Santa Clara', antes:868, ahora:476 },
+                              { destino:'Valencia', antes:748, ahora:500 }
+                        ]  
+                  },
+                  {
+                        origen: 'Lima',
+                        destinos: [
+                              { destino: 'San Andrés', antes:564, ahora:378 },
+                              { destino: 'Aruba', antes:1116, ahora:690 },
+                              { destino: 'Bogotá', antes:564, ahora:378 },
+                              { destino: 'Curazao', antes:972, ahora:662 },
+                              { destino: 'Fort Lauderdale', antes:910, ahora:589 },
+                              { destino: 'La Habana', antes:710, ahora:498 },
+                              { destino: 'Los Ángeles', antes:973, ahora:627 },
+                              { destino: 'Manaos', antes:732, ahora:471 },
+                              { destino: 'Montego Bay', antes:876, ahora:729 }
+                        ]
+                  },
+                  {
+                        origen: 'Quito',
+                        destinos: [
+                              { destino: 'Caracas', antes:598, ahora:491 },
+                              { destino: 'Cancún', antes:931, ahora:534 },
+                              { destino: 'La Habana', antes:557, ahora:398 },
+                              { destino: 'Los Ángeles', antes:829, ahora:555 }
+                        ]
+                  }
+            ]
 	},
 
       departure_date = new Date(2016, 02 - 1, 05),

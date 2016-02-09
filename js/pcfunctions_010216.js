@@ -1,6 +1,52 @@
-// JavaScript Document
+function getInternetExplorerVersion() {
+	var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    var rv = -1;
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer, return version number
+    {               
+
+        if (isNaN(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))))) {
+            //For IE 11 >
+            if (navigator.appName == 'Netscape') {
+                var ua = navigator.userAgent;
+                var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+                if (re.exec(ua) != null) {
+                    rv = parseFloat(RegExp.$1);
+                    return rv;
+                }
+            }
+            else {
+                //alert('otherbrowser');
+                return false;
+            }
+        }
+        else {
+            //For < IE11
+       		return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
+        }
+        return false;
+    }
+}
+
 $(function() {
-	
+
+	//Detecta el navegador
+	// Si es IE
+	if( false || !!document.documentMode ){
+		if( parseInt( getInternetExplorerVersion() ) == 7 ){
+			//Carga las tablas de tarifas con jQuery
+
+		} 
+		
+	} else {
+		var vueScript = document.createElement("script");
+		vueScript.src = "https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js";
+		$("body").append(vueScript);
+		
+		vueScript.src = 'js/logic-vue.js';
+		$("body").append(vueScript);
+	}
 
 	$.each(sysCities.fromcities, function (index, value) {
 		$("#DESDE").append('<option value="'+value.id+'">'+value.name+'</option>');
@@ -187,4 +233,6 @@ $(document).ready(function(){
     });
 		
 });
+
+
 		
