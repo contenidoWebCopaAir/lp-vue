@@ -41,14 +41,46 @@
               <div class="tit_origem">Origen</div>
 
               <ul id="tarifas">
-                <li class="active"><a href="lima040216" class="jqload active">Lima</a></li>
-                <li><a href="guayaquil040216" class="jqload">Guayaquil</a></li>
-                <li><a href="bogota020116" class="jqload">Quito</a></li>
+                <li class="active">
+                  <a class="jqload active" @click="setOrigen( 'Lima' )">Lima</a>
+                </li>
+                <li>
+                  <a class="jqload" @click="setOrigen( 'Guayaquil' )">Guayaquil</a>
+                </li>
+                <li>
+                  <a  class="jqload" @click="setOrigen( 'Quito' )">Quito</a>
+                </li>
               </ul>
 
             </div>
             <div class="coltabcontent">
               <div id="load_content">
+
+                  <div v-for="org in tarifas">
+
+                    <table v-if="org.origen == origen">
+                      <tr>
+                        <th width="166" class="table_col1"scope="col">
+                          <a @click="sortKey = 'destino'">Destino</a>
+                        </th>
+                        <th width="100" align="center" class="table_col2" scope="col">
+                          <a @click="sortKey = 'antes'">Tarifa<br>Antes USD</a>
+                        </th>
+                        <th width="102" align="center" class="table_col3" scope="col">
+                          <a @click="sortKey = 'ahora'">Ahora<br>desde USD*</a>
+                        </th>
+                      </tr>
+                      <tr v-for="destino in org.destinos | orderBy sortKey">
+                        <td>{{ destino.destino }}</td>
+                        <td align="center" class="tex_col2">{{ destino.antes }}</td>
+                        <td align="center">{{ destino.ahora }}</td>
+                      </tr>
+                    </table>
+
+                  </div>
+                  
+               
+
               </div>
             </div>
           </div>
@@ -209,7 +241,7 @@
                             </div></div>
 
                            
-                          
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>                    
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -218,6 +250,7 @@
     <script src="js/jquery.history.js"></script>
     <script src="js/origenes_destinos_fechas_es.js"></script>
     <script src="js/pcfunctions_010216.js"></script>
+    <script src="js/logic-vue.js"></script>
     <script src="https://www.copaair.com/sites/CC/interactivelibrary/promocion/flashsale-pa/js/s_code.js"></script>
     <script src="https://www.copaair.com/_layouts/1033/OmnitureMetrics/ClickMetrics-Omniture.js"></script>
      <!--fin contendo-->
@@ -232,5 +265,5 @@
         if (s_code) document.write(s_code);
       </script>
 
-                        </body>
-                        </html>
+  </body>
+</html>

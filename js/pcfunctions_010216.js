@@ -31,23 +31,6 @@ function getInternetExplorerVersion() {
 
 $(function() {
 
-	//Detecta el navegador
-	// Si es IE
-	if( false || !!document.documentMode ){
-		if( parseInt( getInternetExplorerVersion() ) == 7 ){
-			//Carga las tablas de tarifas con jQuery
-
-		} 
-		
-	} else {
-		var vueScript = document.createElement("script");
-		vueScript.src = "https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js";
-		$("body").append(vueScript);
-		
-		vueScript.src = 'js/logic-vue.js';
-		$("body").append(vueScript);
-	}
-
 	$.each(sysCities.fromcities, function (index, value) {
 		$("#DESDE").append('<option value="'+value.id+'">'+value.name+'</option>');
 	});
@@ -113,6 +96,7 @@ $(function() {
 	}) 	
 	
 });
+
 function buscarVuelos( storeFront ) {
 	v_FROM = $("#DESDE").val();	
 	if (v_FROM == "" || v_FROM == undefined) {
@@ -197,18 +181,21 @@ function goBooking(storeFront, v_codigoprom,v_radIdaVuelta,v_FROM,v_TO,v_diasali
 
 //programacion landing
 $(document).ready(function(){
-	function loadHtml(num) {
-		
-		$("#bt"+num).parent().addClass("active");
-		$("#bt"+num).addClass("active");
-		
-		$("#load_content").fadeOut("fast", function(){
-			$('#load_content').load("info/"+num +".html", function(){
-				$("#load_content").fadeIn("slow");
+
+	//Detecta el navegador
+	// Si es IE
+	if( (false || !!document.documentMode) ){
+		//Carga las tablas de tarifas con jQuery
+		function loadHtml(num) {
+			$("#bt"+num).parent().addClass("active");
+			$("#bt"+num).addClass("active");
+			
+			$("#load_content").fadeOut("fast", function(){
+				$('#load_content').load("info/"+num +".html", function(){
+					$("#load_content").fadeIn("slow");
+				});
 			});
-		});
-		
-    }
+    	}
     
     var firstTab = $("ul#tarifas li a").first().attr('href');
 
@@ -231,6 +218,13 @@ $(document).ready(function(){
         loadHtml(url);
         e.preventDefault();
     });
+		
+	} else {
+		//Carga las tablas con vue
+
+	}
+
+	
 		
 });
 
